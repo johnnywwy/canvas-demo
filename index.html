@@ -29,28 +29,32 @@
             var isTouchDevice = 'ontouchstart' in document.documentElement;
 
             if (isTouchDevice) {
+                // 记录手指开始触摸位置
                 canvas.ontouchstart = (e) => {
                     painting = true
                     last = [e.clientX, e.clientY]
                 }
+                // 记录手指触摸时的位置
                 canvas.ontouchmove = (e) => {
-                    // console.log(e);
                     let x = e.touches[0].clientX
                     let y = e.touches[0].clientY
                     drawLine(last[0], last[1], x, y)
                     last = [x, y]
                 }
             } else {
+                // 记录鼠标按下的位置
                 canvas.onmousedown = (e) => {
                     painting = true
                     last = [e.clientX, e.clientY]
                 }
+                // 记录鼠标移动的位置
                 canvas.onmousemove = (e) => {
                     if (painting === true) {
                         drawLine(last[0], last[1], e.clientX, e.clientY)
                     }
                     last = [e.clientX, e.clientY]
                 }
+                // 记录鼠标抬起函数
                 canvas.onmouseup = () => {
                     painting = false
                 }
