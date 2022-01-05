@@ -29,6 +29,11 @@
             // 检测设备是否支持触摸
             var isTouchDevice = 'ontouchstart' in document.documentElement;
 
+            // 手机端禁止上下拉
+            document.addEventListener('touchmove', e => {
+                e.preventDefault();
+            }, { passive: false })
+
             if (isTouchDevice) {
 
                 // 记录手指开始触摸位置
